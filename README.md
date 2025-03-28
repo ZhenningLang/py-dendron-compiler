@@ -35,6 +35,7 @@ So I try to build a simple tool to compile dendron vault to static html files.
 
 I will explore the workflow of dendron, and try to find more useful features.
 
+- [ ] Add a test dataset, for convenient testing and debugging.
 - [ ] Support more meta tags in dendron notes, such as `tag`, etc.
 - [ ] Support Mermaid, etc.
 
