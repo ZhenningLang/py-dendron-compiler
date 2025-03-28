@@ -31,6 +31,13 @@ I try to use visual studio code plugin 'Dendron' and 'Markmap' together. But it 
 
 So I try to build a simple tool to compile dendron vault to static html files.
 
+## Plan
+
+I will explore the workflow of dendron, and try to find more useful features.
+
+- [ ] Support more meta tags in dendron notes, such as `tag`, etc.
+- [ ] Support Mermaid, etc.
+
 ## Others
 
 This repository is still in **WIP** status for the reason that I am not a deep user of dendron. So I don't have a clear idea about the final goal.
