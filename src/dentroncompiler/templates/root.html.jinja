@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Documentation</title>
+    <style>
+        .container {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+        }
+        .tree {
+            min-width: 250px;
+            max-width: 400px;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+            resize: horizontal;
+        }
+        .content {
+            flex: 1;
+            height: 100%;
+        }
+        .content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .tree li {
+            margin: 8px 0;
+            position: relative;
+        }
+        /* 为所有列表项添加一个默认的圆点 */
+        .tree li::before {
+            content: "•";
+            display: inline-block;
+            width: 12px;
+            margin-right: 6px;
+            text-align: center;
+            color: #666;
+        }
+        /* 有toggle按钮的列表项隐藏圆点 */
+        .tree li:has(> span.toggle)::before {
+            display: none;
+        }
+        .tree li span.toggle {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 6px;
+            width: 12px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .tree li span.toggle::before {
+            content: '-';
+        }
+        .tree li.collapsed > span.toggle::before {
+            content: '+';
+        }
+        .tree ul ul {
+            display: block;  /* Show all by default */
+        }
+        .tree ul ul.hide {
+            display: none;
+        }
+        .tree a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 5px;
+        }
+        .tree a:hover {
+            color: #007bff;
+        }
+        .tree .no-link {
+            color: #ccc;
+            cursor: not-allowed;
+            font-style: italic;
+        }
+        .file-type-icon {
+            font-size: 12px;
+            color: #666;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tree">
+            {{ tree_html|safe }}
+        </div>
+        <div class="content">
+            <iframe id="content-frame" src=""></iframe>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add toggle spans to items with children
+            const itemsWithChildren = document.querySelectorAll('.tree li:has(ul)');
+            itemsWithChildren.forEach(item => {
+                const toggle = document.createElement('span');
+                toggle.className = 'toggle';
+                item.insertBefore(toggle, item.firstChild);
+            });
+
+            // Handle toggle clicks
+            document.querySelectorAll('.tree .toggle').forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const li = this.parentElement;
+                    li.classList.toggle('collapsed');
+                    const ul = li.querySelector('ul');
+                    if (ul) {
+                        ul.classList.toggle('hide');
+                    }
+                });
+            });
+            
+            // Handle links
+            const links = document.querySelectorAll('.tree a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('content-frame').src = this.getAttribute('href');
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
