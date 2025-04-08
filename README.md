@@ -9,7 +9,7 @@ Supported
 ## How to use it
 
 ```bash
-python3 src/compile.py <dendron-repository>
+python3 src/dentroncompiler/compile.py <dendron-repository>
 ```
 
 If you want to enable markmap compilation, add special meta to your dendron note.
@@ -38,6 +38,10 @@ I will explore the workflow of dendron, and try to find more useful features.
 - [ ] Add a test dataset, for convenient testing and debugging.
 - [ ] Support more meta tags in dendron notes, such as `tag`, etc.
 - [ ] Support Mermaid, etc.
+
+Known issues:
+
+- [ ] The path of image rendering is not stable.
 
 ## Others
 
