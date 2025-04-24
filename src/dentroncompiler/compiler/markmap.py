@@ -14,7 +14,7 @@ HTML_TEMPLATE = """
         height: 100vh;
       }}
     </style>
-    <script src="https://jsd.cdn.zzko.cn/npm/markmap-autoloader@0.18"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest/dist/index.min.js"></script>
   </head>
   <body>
     <div class="markmap">
